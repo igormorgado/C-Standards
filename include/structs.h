@@ -1,93 +1,27 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
+#include "button.h"
 #include "stds.h"
 
-typedef struct Delegate           delegate_t;
-typedef struct Entity             entity_t;
-typedef struct Mouse              mouse_t;
-typedef struct App                app_t;
-typedef struct Animation          animation_t;
-typedef struct Texture            texture_t;
-typedef struct FadeColor          fade_color_t;
-typedef struct Background         background_t;
-typedef struct ParallaxBackground parallax_background_t;
-typedef struct Font               font_t;
-typedef struct Trail              trail_t;
-typedef struct Circle             circle_t;
-typedef struct Button             button_t;
-typedef struct ParticleSystem     particle_system_t;
-typedef struct Particle           particle_t;
+typedef struct delegate_t            delegate_t;
+typedef struct entity_t              entity_t;
+typedef struct button_t              button_t;
+typedef struct mouse_t               mouse_t;
+typedef struct app_t                 app_t;
+typedef struct animation_t           animation_t;
+typedef struct texture_t             texture_t;
+typedef struct fade_color_t          fade_color_t;
+typedef struct background_t          background_t;
+typedef struct parallax_background_t parallax_background_t;
+typedef struct font_t                font_t;
+typedef struct trail_t               trail_t;
+typedef struct circle_t              circle_t;
+typedef struct button_t              button_t;
+typedef struct particle_system_t     particle_system_t;
+typedef struct particle_t            particle_t;
 
-/*
- *
- */
-struct Circle {
-  float center_x;
-  float center_y;
-  float radius;
-};
 
-/*
- *
- */
-struct Button {
-  const char *text;
-  const char *font_path;
-  bool        is_filled;
-
-  uint8_t  texture_id;
-  int32_t  text_x;
-  int32_t  text_y;
-  uint16_t font_size;
-  float    scale_x;
-  float    scale_y;
-
-  SDL_Texture *texture[TEXTURE_BUFFER_SIZE];
-  SDL_Color    color;
-  SDL_Color    text_color;
-  SDL_Rect     rect;
-
-  button_t *next;
-};
-
-/*
- *
- */
-struct Particle {
-  float    x;
-  float    y;
-  float    dx;
-  float    dy;
-  float    delta_accel_x;
-  float    delta_accel_y;
-  float    delta_alpha;
-  int32_t  w;
-  int32_t  h;
-  uint32_t angle;
-  int32_t  life;
-  uint32_t id_flags;
-  uint32_t flags;
-
-  SDL_Color    color;
-  SDL_Texture *current_texture;
-
-  animation_t *animation;
-
-  void ( *particle_update )( particle_t * );
-  void ( *particle_draw )( particle_t * );
-};
-
-/*
- *
- */
-struct ParticleSystem {
-  int32_t alive_count;
-  int32_t dead_index;
-  int32_t max_particles;
-
-  particle_t *particles;
-};
 
 /*
  *
@@ -99,85 +33,6 @@ struct ParallaxBackground {
 
   background_t *         background;
   parallax_background_t *next;
-};
-
-/*
- *
- */
-struct Trail {
-  float    x;
-  float    y;
-  int16_t  alpha;
-  int16_t  alpha_decay_rate;
-  uint32_t flags;
-  bool     is_texture;
-
-  SDL_RendererFlip flip;
-  SDL_Texture *    texture;
-
-  trail_t *next;
-};
-
-/*
- *
- */
-struct Animation {
-  float    pos_x;
-  float    pos_y;
-  float    frame_delay;
-  float    frame_timer;
-  uint32_t splice_x;
-  uint32_t splice_y;
-  uint32_t id_flags;
-  uint32_t flags;
-  uint16_t angle;
-  uint16_t start_x;
-  uint16_t start_y;
-  int32_t  w;
-  int32_t  h;
-  int32_t  sprite_sheet_width;
-  int32_t  sprite_sheet_height;
-  uint8_t  current_frame_id;
-  size_t   number_of_frames;
-
-  bool cycle_once;
-
-  SDL_RendererFlip flip;
-
-  SDL_Texture * current_texture;
-  SDL_Texture * default_texture;
-  SDL_Texture **frames;
-  SDL_Texture * sprite_sheet;
-
-  animation_t *next;
-};
-
-/*
- *
- */
-struct Background {
-  float x;
-  float y;
-  float scroll_x;
-  float scroll_y;
-  float scale_x;
-  float scale_y;
-
-  int32_t w;
-  int32_t h;
-
-  SDL_Texture *background_texture;
-};
-
-/*
- *
- */
-struct Texture {
-  char name[MAX_FILE_NAME_LEN];
-
-  SDL_Texture *texture;
-
-  texture_t *next;
 };
 
 /*
@@ -229,13 +84,13 @@ struct App {
   SDL_FRect     screen_bounds;
   SDL_FRect     camera;
 
-  mouse_t               mouse;
-  delegate_t            delegate;
-  trail_t               trail_head, *trail_tail;
-  texture_t             texture_head, *texture_tail;
-  font_t                font_head, *font_tail;
-  parallax_background_t parallax_head, *parallax_tail;
-  button_t              button_head, *button_tail;
+  struct mouse_t               mouse;
+  struct delegate_t            delegate;
+  struct trail_t               trail_head, *trail_tail;
+  struct texture_t             texture_head, *texture_tail;
+  struct font_t                font_head, *font_tail;
+  struct parallax_background_t parallax_head, *parallax_tail;
+  struct button_t              button_head, *button_tail;
 
   enum GameState game_state;
 };

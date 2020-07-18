@@ -3,34 +3,54 @@
 
 #include "stds.h"
 
+/*
+ *
+ */
+struct Circle {
+  float center_x;
+  float center_y;
+  float radius;
+};
+
+/*
+ *
+ */
+struct Texture {
+  char name[MAX_FILE_NAME_LEN];
+
+  SDL_Texture *texture;
+
+  texture_t *next;
+};
+
 extern app_t app;
 
 extern void Stds_PrepareScene( void );
 
 extern void Stds_PresentScene( void );
 
-extern void Stds_BlitTextureRect( SDL_Texture *texture, SDL_Rect *src, float x, float y, bool camera_offset );
+extern void Stds_BlitTextureRect( SDL_Texture *texture, SDL_Rect *src, float x, float y,
+                                  bool camera_offset );
 
 extern void Stds_BlitTexture( SDL_Texture *texture, float x, float y, bool is_center,
-                          bool camera_offset );
+                              bool camera_offset );
 
 extern void Stds_BlitTextureRotate( SDL_Texture *texture, float x, float y, uint16_t angle,
-                                  SDL_RendererFlip flip, SDL_FPoint *p, bool camera_offset );
-                                  
-extern void Stds_BlitTextureResize( SDL_Texture *texture, float x, float y, int32_t w,
-                                 int32_t h, uint16_t angle, SDL_RendererFlip flip,
-                                 bool camera_offset );
+                                    SDL_RendererFlip flip, SDL_FPoint *p, bool camera_offset );
+
+extern void Stds_BlitTextureResize( SDL_Texture *texture, float x, float y, int32_t w, int32_t h,
+                                    uint16_t angle, SDL_RendererFlip flip, bool camera_offset );
 
 extern void Stds_BlitTextureScale( SDL_Texture *texture, float x, float y, float scale_x,
-                                       float scale_y, uint16_t angle, SDL_RendererFlip flip,
-                                       SDL_Color *c, bool camera_offset );
+                                   float scale_y, uint16_t angle, SDL_RendererFlip flip,
+                                   SDL_Color *c, bool camera_offset );
 
 extern void Stds_DrawRect( SDL_Rect *rect, SDL_Color *c, bool is_filled, bool camera_offset );
 
 extern void Stds_DrawRectF( SDL_FRect *frect, SDL_Color *c, bool is_filled, bool camera_offset );
 
 extern void Stds_DrawRectStroke( float x, float y, uint32_t w, uint32_t h, uint32_t thickness,
-                              SDL_Color *c, bool camera_offset );
+                                 SDL_Color *c, bool camera_offset );
 
 extern void Stds_DrawCircle( circle_t *circle, SDL_Color *c, bool is_filled );
 

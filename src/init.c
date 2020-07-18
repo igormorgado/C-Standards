@@ -47,7 +47,7 @@ static void Stds_Cleanup( void );
  */
 void
 Stds_InitGame( const char *window_name, uint32_t window_width, uint32_t window_height,
-           uint32_t level_width, uint32_t level_height ) {
+               uint32_t level_width, uint32_t level_height ) {
   Stds_InitSDL( window_name, window_width, window_height, level_width, level_height );
   Stds_InitSounds();
   Stds_InitFonts();
@@ -80,12 +80,12 @@ Stds_ToggleDebugMode( bool db ) {
  * @param uint32_t window height.
  * @param uint32_t width of level (how far the camera is scrolled).
  * @param uint32_t height of level (how far the camera is scrolled).
- * 
+ *
  * @return void.
  */
 static void
 Stds_InitSDL( const char *window_name, uint32_t window_width, uint32_t window_height,
-          uint32_t level_width, uint32_t level_height ) {
+              uint32_t level_width, uint32_t level_height ) {
   int8_t renderer_flags;
   int8_t window_flags;
   renderer_flags = SDL_RENDERER_ACCELERATED;
